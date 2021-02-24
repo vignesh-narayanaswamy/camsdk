@@ -10,9 +10,9 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: hellonbdev
+      title: Camera
       url: core.html
     output: web
-    title: hellonbdev
+    title: camsdk
   output: web
   title: Sidebar

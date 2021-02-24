@@ -67,8 +67,8 @@ class IpxCamera:
         Starts capturing images from the camera
         """
         try:
-            img_height = self.params.GetInteger('Height')
-            img_width = self.params.GetInteger('Width')
+            img_height = self.params.GetInt('Height').GetValue()[1]
+            img_width = self.params.GetInt('Width').GetValue()[1]
 
             camera_model = self.camera.GetInfo().GetModel()
 
@@ -84,9 +84,9 @@ class IpxCamera:
                 sb_lst.append(stream.CreateBuffer(buf_size))
             print(camera_model, ': Buffers queue created ')
 
-            self.cam_params.SetIntegerValue("TLParamsLocked", 1)
+            self.params.SetIntegerValue("TLParamsLocked", 1)
             stream.StartAcquisition()
-            self.cam_params.ExecuteCommand("AcquisitionStart")
+            self.params.ExecuteCommand("AcquisitionStart")
 
             while True:
                 buffer = stream.GetBuffer(-1)
@@ -103,10 +103,10 @@ class IpxCamera:
 
         except KeyboardInterrupt:
             # self._out.release()
-            if self.cam_params.ExecuteCommand("AcquisitionStop") != 0:
-                self.cam_params.ExecuteCommand("AcquisitionAbort")
+            if self.params.ExecuteCommand("AcquisitionStop") != 0:
+                self.params.ExecuteCommand("AcquisitionAbort")
             stream.StopAcquisition(1);
-            self.cam_params.SetIntegerValue("TLParamsLocked", 0)
+            self.params.SetIntegerValue("TLParamsLocked", 0)
             stream.FlushBuffers(stream.Flush_AllDiscard)
             for b in sb_lst:
                 stream.RevokeBuffer(b);

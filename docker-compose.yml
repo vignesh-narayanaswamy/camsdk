@@ -1,9 +1,16 @@
 version: "3"
 services:
-  fastai: &fastai
+  nbdev_example: &nbdev_example
     restart: unless-stopped
-    working_dir: /data
-    image: fastai/codespaces
+    working_dir: /home/vignesh/camsdk
+    build:
+      context: .
+      dockerfile: camsdk.Dockerfile
+      args:
+        - BUILD=dev
+        - ARTIFACT_TOKEN
+        - ARG_LOGGING_INSTRUMENTATION_KEY
+    image: camsdk:latest
     logging:
       driver: json-file
       options:
@@ -11,26 +18,33 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - .:/data/
+      - .:/home/vignesh/camsdk/
 
   notebook:
-    <<: *fastai
-    command: bash -c "pip install -e . && jupyter notebook --allow-root --no-browser --ip=0.0.0.0 --port=8080 --NotebookApp.token='' --NotebookApp.password=''"
+    <<: *nbdev_example
+    command: /bin/bash -c "../run_jupyter.sh"
     ports:
-      - "8080:8080"
-
+      - "9501:9501"
   watcher:
-    <<: *fastai
+    <<: *nbdev_example
     command: watchmedo shell-command --command nbdev_build_docs --pattern *.ipynb --recursive --drop
     network_mode: host # for GitHub Codespaces https://github.com/features/codespaces/
 
   jekyll:
-    <<: *fastai
+    restart: unless-stopped
+    working_dir: /home/vignesh/camsdk
+    image: fastdotai/nbdev-docs:latest
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/home/vignesh/camsdk/
     ports:
-     - "4000:4000"
+     - "4501:4501"
     command: >
-     bash -c "cp -r docs_src docs
-     && pip install .
-     && nbdev_build_docs && cd docs
+     bash -c "cd docs
      && bundle i
-     && chmod -R u+rwx . && bundle exec jekyll serve --host 0.0.0.0"
+     && chmod -R u+rwx . && bundle exec jekyll serve --host 0.0.0.0 --port 4501"
