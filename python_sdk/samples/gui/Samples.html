@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<head><title>Samples</title></head>
+<style type="text/css">
+body{
+	margin-left: 50px;
+	margin-top: 0px;
+	margin-right: 50px;
+}	
+h1 {
+	color: #0860BF;
+	font-size: 16pt;
+	font-weight: bold;
+}
+h5 {
+	display: inline;
+	color: #292353;
+	font-size: 24pt;
+	font-weight: bold;
+	width: 100%;
+	background-color: white;
+}
+th, th h3{
+	background-color: #555555;
+}
+h3.TDATA {
+	color: #ffffff;
+	text-align: center;
+	padding: 1px;
+	font-size: 14pt;
+	font-weight: bold;
+	background-color: #555555;
+	margin-top: 10;
+	margin->bottom: 0;	
+}
+</style>
+<body>
+<div id="sample_title">
+<div id="sample_block">
+<img src="IMPERX Logo Transparent.png" alt="logo" align="right"/>
+<h5><center> Cheetah Imperx Camera SDK Samples</center></h5>
+</div>
+</div>
+<br></br>
+<h1>KAC Cheetah Imperx Camera Samples</h1>
+<p>The samples illustrate on how to use the Imperx Camera SDK. These samples are based on
+Qt 5.3 and written in C++.</p>
+<table border ="1" width="100%" id="table1" cellspacing="0" cellpadding="2">
+	<tr>
+		<th width="50%">
+		<h3  class="TDATA">Cheetah Imperx Camera SDK Samples</h3></th>
+		<th width = "50%">
+		<h3 class="TDATA">Description</h3></th>
+	</tr>
+		<td style="background-color:lightblue"><b>QtCheetahKACExposureUI</b></td>
+		<td>Demonstrates on how to use the Imperx Camera SDK functions to initialize and call the GrabbingThread, 
+			IpxCam(System, Device,Stream, DeviceInfo, IpxDisplay) modules. The user will become familiar with 
+			the methods to set the Exposure Mode, Exposure in microseconds(us), enable the fixed frame period, 
+			setting the frame time in microseconds, and setting the frame rate in fps.</td>
+	</tr>
+	<tr>
+		<td style="background-color:lightblue"><b>QtCheetahKACGainUI</b></td>
+		<td>Demonstrates on how to use the Imperx Camera SDK functions to initialize and call the GrabbingThread, 
+			IpxCam(System, Device,Stream, DeviceInfo, IpxDisplay) modules. The user will become familiar with 
+			the methods to set the Analog Gain, Digital Gain, and Black Level.</td>
+	</tr>	
+</table>
+<br></br>
+<h1>Python Cheetah Imperx Camera Samples</h1>
+<table border ="1" width="100%" id="table1" cellspacing="0" cellpadding="2">
+	<tr>
+		<th width="50%">
+		<h3  class="TDATA">Cheetah Imperx Camera SDK Samples</h3></th>
+		<th width = "50%">
+		<h3 class="TDATA">Description</h3></th>
+	</tr>
+		<td style="background-color:lightblue"><b>QtCheetahPythonExposureUI</b></td>
+		<td>Demonstrates on how to use the Imperx Camera SDK functions to initialize and call the GrabbingThread, 
+			IpxCam(System, Device,Stream, DeviceInfo, IpxDisplay) modules. The user will become familiar with 
+			the methods to set the Exposure Mode, Exposure in microseconds(us), enable the fixed frame period, 
+			setting the frame time in microseconds, and setting the frame rate in fps.</td>
+	</tr>
+		<td style="background-color:lightblue"><b>QtCheetahPythonGainUI</b></td>
+		<td>Demonstrates on how to use the Imperx Camera SDK functions to initialize and call the GrabbingThread, 
+			IpxCam(System, Device,Stream, DeviceInfo, IpxDisplay) modules. The user will become familiar with 
+			the methods to set the Analog Gain, Digital Gain, and Black Level.</td>
+	</tr>
+</table>
+<br></br>
+<h1>Samples for both Cheetah KAC and Python Imperx Cameras</h1>
+<p>The samples included demonstrates on how to use the KAC and Python Imperx Camera SDK. These samples are based on
+Qt 5.3 and written in C++.</p>
+<table border ="1" width="100%" id="table1" cellspacing="0" cellpadding="2">
+	<tr>
+		<th width="50%">
+		<h3  class="TDATA">Cheetah Imperx Camera SDK Samples</h3></th>
+		<th width = "50%">
+		<h3 class="TDATA">Description</h3></th>
+	</tr>
+	<tr>
+		<td style="background-color:lightblue"><b>QtCommonSampleUI</b></td>
+		<td>Demonstrates on how to use the Imperx Camera SDK functions to initialize and call the GrabbingThread, 
+			IpxCam(System, Device,Stream, DeviceInfo, IpxDisplay) modules.</td>
+	</tr>
+	<tr>
+		<td style="background-color:lightblue"><b>QtTriggerUI</b></td>
+		<td>Demonstrates on how to use the Imperx Camera SDK functions to initialize and call the GrabbingThread, 
+			IpxCam(System, Device,Stream, DeviceInfo, IpxDisplay) modules. The user will become familiar with 
+			the methods to set the Trigger.</td>
+	</tr>	
+</table>
+
+<p><b>NOTE:</b>You must be login as root to modify the usbfs_memory_mb if you need to display an image greater than 7MB. You can modify the size of the usbfs memory mb if needed by editing the 'usbfs_memory_mb' file. For example:</p>
+<p>sudo sh -c "echo 1000 > /sys/module/usbcore/parameters/usbfs_memory_mb"</p>
+</body>
+</html>

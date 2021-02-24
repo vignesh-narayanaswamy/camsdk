@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>IpxPlayerClass</class>
+ <widget class="QMainWindow" name="IpxPlayerClass">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>936</width>
+    <height>726</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IpxPlayer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../common/res/qrc/imperx.qrc">
+    <normaloff>:/icons/imperx.ico</normaloff>:/icons/imperx.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="centralLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBarFile">
+   <property name="windowTitle">
+    <string>File toolbar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionConnect"/>
+   <addaction name="actionDisconnect"/>
+   <addaction name="actionPlay"/>
+   <addaction name="actionStop"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBarDisplay">
+   <property name="windowTitle">
+    <string>Display toolbar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
+   <addaction name="actionActualSize"/>
+   <addaction name="actionFitToWindow"/>
+   <addaction name="actionSpreadToWindow"/>
+   <addaction name="actionCenterImage"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarView">
+   <property name="windowTitle">
+    <string>View toolbar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionGenICamTree"/>
+  </widget>
+  <action name="actionSaveConfigurationAs">
+   <property name="text">
+    <string>Save configuration &amp;as...</string>
+   </property>
+  </action>
+  <action name="actionSaveGenICamXML">
+   <property name="text">
+    <string>Save &amp;GenICam XML...</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/connection_USB.png</normaloff>:/images/connection_USB.png</iconset>
+   </property>
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/disconnection_USB.png</normaloff>:/images/disconnection_USB.png</iconset>
+   </property>
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionPlay">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/play.png</normaloff>:/images/play.png</iconset>
+   </property>
+   <property name="text">
+    <string>Play</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/stop.png</normaloff>:/images/stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop</string>
+   </property>
+  </action>
+  <action name="actionRecord">
+   <property name="text">
+    <string>Record</string>
+   </property>
+  </action>
+  <action name="actionSnap">
+   <property name="text">
+    <string>Snap</string>
+   </property>
+  </action>
+  <action name="actionGenICamTree">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/GenICamTree_32.png</normaloff>:/images/GenICamTree_32.png</iconset>
+   </property>
+   <property name="text">
+    <string>GenICam Tree</string>
+   </property>
+  </action>
+  <action name="actionCamConfig_BasicView">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/camconfig_basic.png</normaloff>:/images/camconfig_basic.png</iconset>
+   </property>
+   <property name="text">
+    <string>CamConfig - Basic View</string>
+   </property>
+  </action>
+  <action name="actionCamConfig_ExpertView">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/camconfig_expert.png</normaloff>:/images/camconfig_expert.png</iconset>
+   </property>
+   <property name="text">
+    <string>CamConfig - Expert View</string>
+   </property>
+  </action>
+  <action name="actionColorizeHistogram">
+   <property name="text">
+    <string>Colorize by markers</string>
+   </property>
+  </action>
+  <action name="actionStretchHistogram">
+   <property name="text">
+    <string>Stretch between markers</string>
+   </property>
+  </action>
+  <action name="actionImageProcessing">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/image_processing.png</normaloff>:/images/image_processing.png</iconset>
+   </property>
+   <property name="text">
+    <string>Image processing</string>
+   </property>
+  </action>
+  <action name="actionDefaultPanelsLayout">
+   <property name="text">
+    <string>Default panels layout</string>
+   </property>
+  </action>
+  <action name="actionBrowseRecordingFolder">
+   <property name="text">
+    <string>Browse the recording folder</string>
+   </property>
+  </action>
+  <action name="actionOpenLastRecordedFile">
+   <property name="text">
+    <string>Open last recorded file</string>
+   </property>
+  </action>
+  <action name="actionBuffer">
+   <property name="text">
+    <string>Buffer</string>
+   </property>
+  </action>
+  <action name="actionTextOverlay">
+   <property name="text">
+    <string>Text overlay</string>
+   </property>
+  </action>
+  <action name="actionDisplayOptions">
+   <property name="text">
+    <string>Display</string>
+   </property>
+  </action>
+  <action name="actionCaptureOptions">
+   <property name="text">
+    <string>Capture</string>
+   </property>
+  </action>
+  <action name="actionApplicationOptions">
+   <property name="text">
+    <string>Application options</string>
+   </property>
+  </action>
+  <action name="actionZoomIn">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/zoom+.png</normaloff>:/images/zoom+.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom in</string>
+   </property>
+  </action>
+  <action name="actionZoomOut">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/zoom-.png</normaloff>:/images/zoom-.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom out</string>
+   </property>
+  </action>
+  <action name="actionActualSize">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/zoom_100.png</normaloff>:/images/zoom_100.png</iconset>
+   </property>
+   <property name="text">
+    <string>Actual size (100%)</string>
+   </property>
+  </action>
+  <action name="actionFitToWindow">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/zoom_fit_window.png</normaloff>:/images/zoom_fit_window.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fit to window</string>
+   </property>
+  </action>
+  <action name="actionSpreadToWindow">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/zoom_spread_window.png</normaloff>:/images/zoom_spread_window.png</iconset>
+   </property>
+   <property name="text">
+    <string>Spread to window</string>
+   </property>
+  </action>
+  <action name="actionFullScreen">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/full_screen.png</normaloff>:/images/full_screen.png</iconset>
+   </property>
+   <property name="text">
+    <string>Full screen</string>
+   </property>
+  </action>
+  <action name="actionCenterImage">
+   <property name="icon">
+    <iconset resource="../common/res/qrc/imperx.qrc">
+     <normaloff>:/images/center_window.png</normaloff>:/images/center_window.png</iconset>
+   </property>
+   <property name="text">
+    <string>Center image</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../common/res/qrc/imperx.qrc"/>
+  <include location="../common/res/qrc/imperx.qrc"/>
+  <include location="../common/res/qrc/imperx.qrc"/>
+  <include location="../common/res/qrc/imperx.qrc"/>
+  <include location="../common/res/qrc/imperx.qrc"/>
+  <include location="../common/res/qrc/imperx.qrc"/>
+ </resources>
+ <connections/>
+</ui>

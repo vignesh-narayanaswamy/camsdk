@@ -1,0 +1,79 @@
+IpxCameraSdk Samples
+********************
+
+Introduction
+============
+The Imperx Camera SDK is designed to provide software developers with API
+methods for ease of integrating Imperx cameras into their software application.
+The SDK has two main parts
+    IpxCameraApi - low level API.
+    IpxCameraGuiApi - provides different GUI controls.
+        Qt5.9.3 - is used on x86_64 platform
+        Qt5.5.1 - is used on aarch64(ARM64) platform
+
+To build anything on Linux you need to have gcc/g++.
+For Ubuntu run:
+    sudo apt install build-essential
+
+There are two ways to build samples:
+    1) to use Qt Creator.
+    2) to use CMake.
+
+Qt Creator
+==========
+Simple way to install Qt Creator for ARM platform is to run the following command:
+    sudo apt install qt5-default qtcreator -y
+if you get error "unable to locate package ...",
+enable universe repository to be searched by running
+    sudo add-apt-repository universe
+    sudo apt-get update
+	
+For x86_64 platform please download and install Qt5.9.3.
+to be able to use IpxCameraGuiApi library.
+
+After everything is installed check if Qt Creator settings are set correctly.
+Should you have any issue with Qt Creator please consult Qt Creator
+help documentation.
+
+To build samples just open .pro file with Qt Creator, build and run.
+
+CMake
+=====
+To build samples with CMake you must install it on your system.
+If it is not already installed, you can run the following command to install CMake
+    sudo apt install cmake
+
+To build GUI samples you need Qt libraries as well.
+To install Qt libraries run
+    sudo apt install qt5-default
+if you get error "unable to locate package qt5-default",
+enable universe repository to be searched by running
+    sudo add-apt-repository universe
+    sudo apt-get update
+and repeat
+    sudo apt install qt5-default
+
+So to have temporary build files separate from source files
+create a temp directory anywhere you want, for instance
+    cd /path/to/sdk/IpxCameraSdk-Version/samples
+    mkdir build-console
+
+Change the current directory to the one just created
+    cd build-console
+
+And build console application
+    cmake ../console
+where ../console is path to the source directory with CMakeLists.txt file
+
+By default CMake will set your build system architecture, for example x86_64
+If you want you can specify architecture to build for, e.g.
+    cmake -DARCH=aarch64 ../console
+
+After the cmake command ran successfully, run the following command
+    make
+
+To build gui samples do the same.
+    mkdir build-gui
+    cd build-gui
+    cmake ../gui
+    make

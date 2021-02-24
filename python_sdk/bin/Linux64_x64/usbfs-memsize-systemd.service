@@ -1,0 +1,8 @@
+[Unit]
+Description=Set the size of the usbfs memory to 1000MB
+
+[Service]
+ExecStart=/bin/sh -c "echo 1000 > /sys/module/usbcore/parameters/usbfs_memory_mb"
+
+[Install]
+WantedBy=multi-user.target
