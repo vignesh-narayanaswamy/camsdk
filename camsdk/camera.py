@@ -4,7 +4,7 @@ __all__ = ['IpxCamera']
 
 # Cell
 #export
-import cv2
+# import cv2
 import numpy as np
 import libIpxCameraApiPy as IpxCameraApiPy
 
@@ -96,9 +96,9 @@ class IpxCamera:
                 # Use DL to check if the current frame has start of a truck rail
                 # If it does, start recording images
 
-                cv2.imshow('Cam Stream', image)
+                # cv2.imshow('Cam Stream', image)
                 # self._out.write(image)
-                cv2.waitKey(1)
+                # cv2.waitKey(1)
                 stream.QueueBuffer(buffer)
 
         except KeyboardInterrupt:

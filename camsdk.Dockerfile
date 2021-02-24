@@ -40,7 +40,7 @@ RUN chmod 755 -R /home/$CONTAINER_USER
 RUN chmod 755 -R /home/$CONTAINER_USER/camsdk
 
 ADD python_sdk_18.04 /home/$CONTAINER_USER/python_sdk
-ENV PATH=${PATH}:/home/$CONTAINER_USER/python_sdk/lib/Linux64_x64
+ENV PYTHONPATH=${PYTHONPATH}:/home/$CONTAINER_USER/python_sdk/lib/Linux64_x64
 
 # COPY --chown=$CONTAINER_USER:$CONTAINER_GROUP misc/themes.jupyterlab-settings /home/$CONTAINER_USER/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/
 # COPY --chown=$CONTAINER_USER:$CONTAINER_GROUP misc/shortcuts.jupyterlab-settings /home/$CONTAINER_USER/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/

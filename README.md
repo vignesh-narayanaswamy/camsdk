@@ -1,5 +1,5 @@
 # Imperx Camera SDK
-> How to Initialize camera
+
 
 
 Connection is established with the camera when Camera object is initialized
