@@ -39,7 +39,7 @@ RUN chmod 755 -R /opt/conda/lib/python3.*
 RUN chmod 755 -R /home/$CONTAINER_USER
 RUN chmod 755 -R /home/$CONTAINER_USER/camsdk
 
-ADD python_sdk_18.04 /home/$CONTAINER_USER/python_sdk
+ADD python_sdk_20.04 /home/$CONTAINER_USER/python_sdk
 ENV PYTHONPATH=${PYTHONPATH}:/home/$CONTAINER_USER/python_sdk/lib/Linux64_x64
 
 # COPY --chown=$CONTAINER_USER:$CONTAINER_GROUP misc/themes.jupyterlab-settings /home/$CONTAINER_USER/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/
