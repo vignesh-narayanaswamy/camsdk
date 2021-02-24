@@ -5,7 +5,7 @@ services:
     working_dir: /home/vignesh/camsdk
     build:
       context: .
-      dockerfile: camsdk.Dockerfile
+      dockerfile: cam_sdk.Dockerfile
       args:
         - BUILD=dev
         - ARTIFACT_TOKEN

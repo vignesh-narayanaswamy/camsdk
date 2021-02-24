@@ -1,26 +1,48 @@
-FROM continuumio/miniconda3:4.4.10
-
+FROM ubuntu:18.04
 
 ARG BUILD=dev
 
+# Configure environment
+ENV CONDA_DIR /opt/conda
+ENV PATH $CONDA_DIR/bin:$PATH
+ENV SHELL /bin/bash
+ENV CONTAINER_USER drtools
+ENV CONTAINER_UID 1000
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
+# Configure User
 ENV CONTAINER_USER vignesh
 ENV CONTAINER_GROUP camsdk_group
 ENV CONTAINER_UID 1000
 ENV DEBIAN_FRONTEND=noninteractive
-# Add build args
-# ARG ARTIFACT_TOKEN
-# ENV PIP_EXTRA_INDEX_URL https://mariner-svi:$ARTIFACT_TOKEN@pkgs.dev.azure.com/Mariner-Spyglass/_packaging/mariner-svi/pypi/simple/
-# ARG ARG_LOGGING_INSTRUMENTATION_KEY
-# ENV LOGGING_INSTRUMENTATION_KEY=$ARG_LOGGING_INSTRUMENTATION_KEY
 
-# Add user to conda
+# Configure Miniconda
+ENV MINICONDA_VER 4.5.4
+ENV MINICONDA Miniconda3-$MINICONDA_VER-Linux-x86_64.sh
+ENV MINICONDA_URL https://repo.continuum.io/miniconda/$MINICONDA
+ENV MINICONDA_MD5_SUM 0c28787e3126238df24c5d4858bd0744
+
 RUN addgroup --gid $CONTAINER_UID $CONTAINER_GROUP && \
     adduser --uid $CONTAINER_UID --gid $CONTAINER_UID $CONTAINER_USER --disabled-password  && \
     mkdir -p /opt/conda && chown $CONTAINER_USER /opt/conda
 
 RUN apt-get update && apt-get install -y software-properties-common rsync
-RUN apt-get update && apt-get install -y git libglib2.0-dev graphviz nano && apt-get update
-# RUN pip install svi_core_2
+RUN apt-get update && apt-get install -y git libglib2.0-dev graphviz nano curl libpython3.6-dev
+
+# Install conda
+RUN cd /tmp && \
+    mkdir -p $CONDA_DIR && \
+    curl -L $MINICONDA_URL  -o miniconda.sh && \
+#    echo "$MINICONDA_MD5_SUM  miniconda.sh" | md5sum -c - && \
+    /bin/bash miniconda.sh -f -b -p $CONDA_DIR && \
+    rm miniconda.sh && \
+    $CONDA_DIR/bin/conda install --yes conda==$MINICONDA_VER
+
+RUN conda upgrade -y pip && \
+    conda config --add channels conda-forge && \
+    conda clean --all
 
 RUN /bin/bash -c "if [[ $BUILD == 'dev' ]] ; then echo \"Dev Build\" && pip install graphviz watchdog[watchmedo] nbdev nbconvert==5.* aquirdturtle_collapsible_headings matplotlib; fi "
 
@@ -42,24 +64,12 @@ RUN chmod 755 -R /home/$CONTAINER_USER/camsdk
 ADD python_sdk_18.04 /home/$CONTAINER_USER/python_sdk
 ENV PYTHONPATH=${PYTHONPATH}:/home/$CONTAINER_USER/python_sdk/lib/Linux64_x64
 
-# COPY --chown=$CONTAINER_USER:$CONTAINER_GROUP misc/themes.jupyterlab-settings /home/$CONTAINER_USER/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/
-# COPY --chown=$CONTAINER_USER:$CONTAINER_GROUP misc/shortcuts.jupyterlab-settings /home/$CONTAINER_USER/.jupyter/lab/user-settings/@jupyterlab/shortcuts-extension/
-# COPY --chown=$CONTAINER_USER:$CONTAINER_GROUP misc/tracker.jupyterlab-settings /home/$CONTAINER_USER/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/
-
 USER $CONTAINER_USER
 ENV PATH="/home/$CONTAINER_USER/.local/bin:${PATH}"
 COPY --chown=$CONTAINER_USER:$CONTAINER_GROUP . /home/$CONTAINER_USER/camsdk
 
-# RUN /bin/bash -c "if [[ $BUILD == 'prod' ]] ; then echo \"Production Build\" && pip install svi_core_2 --upgrade  && pip install .; fi"
-# RUN /bin/bash -c "if [[ $BUILD == 'dev' ]] ; then echo \"Development Build\" && pip install svi_core_2 --upgrade && pip install -e \".[dev]\"; fi"
-
 RUN echo '#!/bin/bash\njupyter lab --ip=0.0.0.0 --port=9501 --allow-root --no-browser  --NotebookApp.token='' --NotebookApp.password=''' >> ../run_jupyter.sh
 
-USER $CONTAINER_USER
 RUN /bin/bash -c "pip install -e ."
 
 RUN chmod u+x ../run_jupyter.sh
-# RUN chmod u+x run.sh
-
-#ENTRYPOINT "./run.sh"
-#CMD ["/bin/bash","-c"]

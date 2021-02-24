@@ -2,6 +2,12 @@
 
 
 
+Sample code to
+- Initialize the camera
+- View camera parameters
+- Change camera parameters
+- Start and stop acquisition
+
 Connection is established with the camera when Camera object is initialized
 
 ```python
@@ -16,7 +22,7 @@ cam = IpxCamera()
 
 Once connection is established, camera parameters can be viewed and changed
 
-###### Viewing camera parameters
+##### Viewing camera parameters
 
 ```python
 cam.params.GetFloat("ExposureTime").GetValue()
@@ -41,7 +47,7 @@ cam.params.GetInt("Width").GetValue()
 
 
 
-###### Setting camera parameters
+##### Setting camera parameters
 
 ```python
 cam.params.GetInt("Width").SetValue(1240)
