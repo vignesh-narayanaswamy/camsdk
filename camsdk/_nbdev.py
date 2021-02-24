@@ -2,9 +2,9 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {}
+index = {"IpxCamera": "00_core.ipynb"}
 
-modules = []
+modules = ["camera.py"]
 
 doc_url = "https://vignesh-narayanaswamy.github.io/camsdk/"
 
